@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StayType — NYC Room Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <!-- Ambient blobs -->
+  <div class="ambient">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-brand">🏙️ Stay<em>Type</em></div>
+    <div class="nav-center">NYC · Airbnb Room Predictor</div>
+    <div class="nav-status">
+      <span class="dot" id="dot"></span>
+      <span id="api-status">Connecting…</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="eyebrow">Machine Learning · FastAPI · Scikit-learn</p>
+    <h1>What kind of room<br/><em>is this listing?</em></h1>
+    <p class="hero-sub">Enter any NYC Airbnb listing details below.<br/>Our ML model predicts the room type in milliseconds.</p>
+    <div class="hero-arrow">↓</div>
+  </section>
+
+  <!-- Form + Result -->
+  <main class="main">
+
+    <!-- FORM CARD -->
+    <div class="card" id="form-card">
+
+      <!-- Progress -->
+      <div class="progress-wrap">
+        <div class="progress-track"><div class="progress-fill" id="prog"></div></div>
+        <span id="prog-label">0 of 10 fields filled</span>
+      </div>
+
+      <form id="form" novalidate>
+
+        <!-- Section 1 -->
+        <div class="sec">
+          <div class="sec-head">
+            <span class="sec-num">01</span>
+            <div>
+              <div class="sec-title">Location</div>
+              <div class="sec-desc">Where is the property?</div>
+            </div>
+          </div>
+          <div class="grid">
+
+            <div class="field full">
+              <label for="neighbourhood_group">Borough <span>NYC's 5 boroughs</span></label>
+              <div class="sel-wrap">
+                <select id="neighbourhood_group" name="neighbourhood_group" required>
+                  <option value="">Select borough…</option>
+                  <option>Manhattan</option>
+                  <option>Brooklyn</option>
+                  <option>Queens</option>
+                  <option>Bronx</option>
+                  <option>Staten Island</option>
+                </select>
+                <span class="arrow">⌄</span>
+              </div>
+              <div class="err" id="e-neighbourhood_group"></div>
+            </div>
+
+            <div class="field full">
+              <label for="neighbourhood">Neighbourhood <span>e.g. Williamsburg, Harlem</span></label>
+              <input type="text" id="neighbourhood" name="neighbourhood" placeholder="Enter neighbourhood…" required/>
+              <div class="err" id="e-neighbourhood"></div>
+            </div>
+
+            <div class="field">
+              <label for="latitude">Latitude <span>-90 to 90</span></label>
+              <input type="number" id="latitude" name="latitude" placeholder="40.7128" step="0.0001" min="-90" max="90" required/>
+              <div class="err" id="e-latitude"></div>
+            </div>
+
+            <div class="field">
+              <label for="longitude">Longitude <span>-180 to 180</span></label>
+              <input type="number" id="longitude" name="longitude" placeholder="-74.0060" step="0.0001" min="-180" max="180" required/>
+              <div class="err" id="e-longitude"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 2 -->
+        <div class="sec">
+          <div class="sec-head">
+            <span class="sec-num">02</span>
+            <div>
+              <div class="sec-title">Pricing & Stay</div>
+              <div class="sec-desc">What are the costs?</div>
+            </div>
+          </div>
+          <div class="grid">
+
+            <div class="field">
+              <label for="price">Price per Night <span>USD</span></label>
+              <div class="prefix-wrap">
+                <span class="prefix">$</span>
+                <input type="number" id="price" name="price" placeholder="150" min="1" step="1" required/>
+              </div>
+              <div class="err" id="e-price"></div>
+            </div>
+
+            <div class="field">
+              <label for="minimum_nights">Minimum Nights <span>1 to 365</span></label>
+              <input type="number" id="minimum_nights" name="minimum_nights" placeholder="2" min="1" max="365" required/>
+              <div class="err" id="e-minimum_nights"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 3 -->
+        <div class="sec">
+          <div class="sec-head">
+            <span class="sec-num">03</span>
+            <div>
+              <div class="sec-title">Reviews</div>
+              <div class="sec-desc">How is this listing rated?</div>
+            </div>
+          </div>
+          <div class="grid">
+
+            <div class="field">
+              <label for="number_of_reviews">Total Reviews <span>all time</span></label>
+              <input type="number" id="number_of_reviews" name="number_of_reviews" placeholder="42" min="0" required/>
+              <div class="err" id="e-number_of_reviews"></div>
+            </div>
+
+            <div class="field">
+              <label for="reviews_per_month">Reviews / Month <span>monthly avg</span></label>
+              <input type="number" id="reviews_per_month" name="reviews_per_month" placeholder="1.5" min="0" step="0.01" required/>
+              <div class="err" id="e-reviews_per_month"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Section 4 -->
+        <div class="sec">
+          <div class="sec-head">
+            <span class="sec-num">04</span>
+            <div>
+              <div class="sec-title">Host & Availability</div>
+              <div class="sec-desc">About the host's portfolio</div>
+            </div>
+          </div>
+          <div class="grid">
+
+            <div class="field">
+              <label for="calculated_host_listings_count">Host Listings <span>total by this host</span></label>
+              <input type="number" id="calculated_host_listings_count" name="calculated_host_listings_count" placeholder="3" min="0" required/>
+              <div class="err" id="e-calculated_host_listings_count"></div>
+            </div>
+
+            <div class="field">
+              <label for="availability_365">Availability <span>days/year · <span id="avail-display">180</span> days</span></label>
+              <input type="number" id="availability_365" name="availability_365" placeholder="180" min="0" max="365" required/>
+              <input type="range" id="avail-range" min="0" max="365" value="180" class="slider"/>
+              <div class="err" id="e-availability_365"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="btn-row">
+          <button type="submit" class="btn-predict" id="btn-predict">
+            <span>Predict Room Type</span>
+            <span class="btn-arrow">→</span>
+          </button>
+          <button type="button" class="btn-reset" id="btn-reset">Clear</button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- RESULT PANEL -->
+    <div class="result-panel hidden" id="result-panel">
+
+      <!-- Loading -->
+      <div id="loading-state">
+        <div class="spinner">
+          <div class="ring r1"></div>
+          <div class="ring r2"></div>
+          <div class="ring r3"></div>
+        </div>
+        <p class="loading-text">Analyzing listing…</p>
+        <div class="loading-steps">
+          <div class="lstep active" id="ls1">Processing features</div>
+          <div class="lstep" id="ls2">Running pipeline</div>
+          <div class="lstep" id="ls3">Computing probabilities</div>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div id="result-state" class="hidden">
+        <div class="res-icon" id="res-icon"></div>
+        <p class="res-label">Predicted Room Type</p>
+        <h2 class="res-type" id="res-type"></h2>
+        <p class="res-desc" id="res-desc"></p>
+        <div class="conf-section">
+          <p class="conf-title">Confidence Breakdown</p>
+          <div id="conf-bars"></div>
+        </div>
+        <button class="btn-back" id="btn-back">← Predict Another</button>
+      </div>
+
+    </div>
+
+    <!-- ERROR TOAST -->
+    <div class="toast hidden" id="toast">
+      <span class="toast-icon">⚠</span>
+      <span id="toast-msg"></span>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <span>StayType · NYC Airbnb Room Predictor</span>
+    <span>·</span>
+    <span>FastAPI + Scikit-learn Pipeline</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
