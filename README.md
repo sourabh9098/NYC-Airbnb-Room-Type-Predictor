@@ -202,7 +202,7 @@ Most ML demos stop at the API. I went further:
 ## Author
 
 **Sourabh Vishwakarma**
-Final Year B.Tech CSE (AI) · Technocrats Institute of Technology, Bhopal
+Final Year B.Tech CSE ( AI )  Technocrats Institute of Technology , Bhopal
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/yourprofile)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](www.linkedin.com/in/sourabh9098)
 [![GitHub](https://img.shields.io/badge/GitHub-sourabh9098-181717?style=flat-square&logo=github)](https://github.com/sourabh9098)
