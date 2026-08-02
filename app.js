@@ -7,7 +7,7 @@
 'use strict';
 
 /* ── Config ─────────────────────────────────────── */
-const API_BASE = 'http://127.0.0.1:8000';
+const API_BASE = 'https://nyc-airbnb-room-type-predictor-qh8s.onrender.com';
 
 /* ── Room type meta ─────────────────────────────── */
 const ROOM_META = {

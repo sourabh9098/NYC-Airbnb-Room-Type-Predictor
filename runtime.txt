@@ -1,5 +1,2 @@
-<<<<<<< HEAD
-python-3.11.15
-=======
-python-3.11.15
->>>>>>> 7e6b3c1 (Set Python version for Render)
+python-3.11.11
+
