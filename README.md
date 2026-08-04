@@ -68,7 +68,7 @@ The model is a `sklearn.pipeline.Pipeline` with:
 | Classifier | `RandomForestClassifier` | Multi-class room type prediction |
 | Resampling | SMOTE | Handled class imbalance during training |
 
-**Input features (10):**
+**Input features ( 10 ) :**
 
 ```python
 ['neighbourhood_group', 'neighbourhood', 'latitude', 'longitude',
@@ -88,7 +88,7 @@ The model is a `sklearn.pipeline.Pipeline` with:
 
 ## API Reference
 
-**Base URL:** `http://127.0.0.1:8000`
+**Base URL :** `http://127.0.0.1:8000`
 
 ### `POST /predict`
 
