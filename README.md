@@ -122,7 +122,7 @@ The model is a `sklearn.pipeline.Pipeline` with:
 - `minimum_nights` → 1 to 365
 - `availability_365` → 0 to 365
 
-### `GET /home`
+### `GET / home`
 Health check — returns `200 OK` when API is live.
 
 ---
@@ -145,7 +145,7 @@ statype/
 
 ## Running Locally
 
-**1. Clone**
+**1.  clone**
 ```bash
 git clone https://github.com/sourabh9098/statype-room-predictor.git
 cd statype-room-predictor
@@ -187,7 +187,7 @@ python -m http.server 5500
 
 ## What I Built Into the Frontend
 
-Most ML demos stop at the API. I went further:
+Most ML demos stop at the API I went further
 
 - **Real-time API health check** — nav bar shows green/red dot based on `/home` ping every 30s
 - **Live progress bar** — tracks how many of 10 fields are filled as you type
