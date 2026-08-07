@@ -68,15 +68,6 @@ The model is a `sklearn.pipeline.Pipeline` with:
 | Classifier | `RandomForestClassifier` | Multi-class room type prediction |
 | Resampling | SMOTE | Handled class imbalance during training |
 
-**Input features ( 10 ) :**
-
-```python
-['neighbourhood_group', 'neighbourhood', 'latitude', 'longitude',
- 'price', 'minimum_nights', 'number_of_reviews',
- 'reviews_per_month', 'calculated_host_listings_count', 'availability_365']
-```
-
-**Output:**
 ```json
 {
   "prediction": "Entire home/apt",
