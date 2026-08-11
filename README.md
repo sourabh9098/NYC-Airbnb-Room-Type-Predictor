@@ -174,7 +174,6 @@ python -m http.server 5500
 | Fonts | Playfair Display · Inter · JetBrains Mono |
 | Dev Server | Uvicorn |
 
----
 
 ## What I Built Into the Frontend
 
@@ -187,8 +186,6 @@ Most ML demos stop at the API I went further
 - **Confidence breakdown** — animated bars for all 3 room type probabilities, sorted by confidence
 - **Availability slider** — synced two-way between number input and range slider
 - **Ambient background** — three colored blobs with CSS `blur` and `drift` animation
-
----
 
 ## Author
 
