@@ -77,7 +77,7 @@ The model is a `sklearn.pipeline.Pipeline` with:
 
 ---
 
-## API Reference
+## Api Reference
 
 **Base URL :** `http://127.0.0.1:8000`
 
