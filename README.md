@@ -187,7 +187,7 @@ Most ML demos stop at the API I went further
 - **Availability slider** — synced two-way between number input and range slider
 - **Ambient background** — three colored blobs with CSS `blur` and `drift` animation
 
-## Author
+## Author -
 
 **Sourabh Vishwakarma**
 Final Year B.Tech CSE ( AI )  Technocrats Institute of Technology , Bhopal
